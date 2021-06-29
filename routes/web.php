@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,5 +13,34 @@
 |
 */
 
+Route::get(
+    '/',
+    [
+        'uses' => 'MainController@index',
+        'as'   => 'main-index'
+    ]
+);
 
+Route::get(
+    '/character/{id}',
+    [
+        'uses' => 'CharacterController@item',
+        'as'   => 'character-item'
+    ]
+);
 
+Route::get(
+    '/houses',
+    [
+        'uses' => 'HouseController@list',
+        'as'   => 'houses-list'
+    ]
+);
+
+Route::get(
+    '/house/{id}',
+    [
+        'uses' => 'CharacterController@list',
+        'as'   => 'house-list'
+    ]
+);

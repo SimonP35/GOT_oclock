@@ -1,12 +1,7 @@
-<h1>Game of Thrones</h1>
-<nav>
-    <ul>
-        <li><a href="#/">Personnages</a></li>
-        <li><a href="#/houses">Maisons</a></li>
-    </ul>
-</nav>
-<div class="separator"></div>
-</header>
+<?php
+include __DIR__.'/../layout/header.tpl.php';
+?>
+
 <main>
     <div class="wrapper">
         <h2>Maison Lannister</h2>
@@ -93,3 +88,7 @@
         </ul>
     </div>
 </main>
+
+<?php
+include __DIR__.'/../layout/footer.tpl.php';
+?>
