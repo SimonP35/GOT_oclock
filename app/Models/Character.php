@@ -25,7 +25,7 @@ class Character extends Model
 
     public function house()
     {
-        return $this->hasManyThrough(House::class, House_has_characters::class, 'character', 'id');
+        return $this->hasManyThrough(House::class, House_has_characters::class, 'character', 'id', 'id', 'house');
     }
 
 }

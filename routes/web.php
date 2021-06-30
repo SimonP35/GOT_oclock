@@ -16,8 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::get(
     '/',
     [
-        'uses' => 'MainController@index',
-        'as'   => 'main-index'
+        'uses' => 'CharacterController@index',
+        'as'   => 'character-index'
     ]
 );
 

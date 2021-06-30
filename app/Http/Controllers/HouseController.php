@@ -11,8 +11,6 @@ class HouseController extends BaseController
     {
         $houses = House::All();
 
-        // dump($houses);
-
         return view('houses.houses', [ 'houses' => $houses]);
     }
 

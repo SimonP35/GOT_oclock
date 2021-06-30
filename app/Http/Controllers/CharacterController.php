@@ -3,19 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Models\House;
-use App\Models\Mother;
 use App\Models\Character;
-use Illuminate\Support\Facades\DB;
-use App\Models\House_has_characters;
 use Laravel\Lumen\Routing\Controller as BaseController;
 
 class CharacterController extends BaseController
 {
+    public function index()
+    {
+        $characters = Character::All();
+        $viewName = "index";
+
+        return view('character.list', ['characters' => $characters->load('house'), 'viewName' => $viewName]);
+    }
+
     public function item($id)
     {
         $character = Character::find($id);
-
-        dump($character->load('title', 'mother', 'father', 'house'));
 
         return view('character.bio', ['character' => $character->load('title', 'mother', 'father')]);
     }
@@ -25,10 +28,9 @@ class CharacterController extends BaseController
         // //? Solution avec les "relations" des Models
 
         $house = House::find($id);
+        $viewName = "house";
 
-        // dump($house->load(['character']));
-
-        return view('character.house', ['house' => $house->load(['character'])]);
+        return view('character.list', ['house' => $house->load(['character']), 'viewName' => $viewName]);
 
         //? Solution qui fonctionne sans utiliser les "relations" des Models
 

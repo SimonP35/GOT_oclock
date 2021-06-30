@@ -11,7 +11,7 @@
         <h1>Game of Thrones</h1>
         <nav>
             <ul>
-                <li><a href="<?= route('main-index'); ?>">Personnages</a></li>
+                <li><a href="<?= route('character-index'); ?>">Personnages</a></li>
                 <li><a href="<?= route('houses-list'); ?>">Maisons</a></li>
             </ul>
         </nav>
