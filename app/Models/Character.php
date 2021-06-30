@@ -10,22 +10,22 @@ class Character extends Model
 
     public function title()
     {
-        return $this->belongsTo(Title::class, 'id_title');
+        return $this->hasOne(Title::class, 'id', 'id_title');
     }
 
     public function mother()
     {
-        return $this->belongsTo(Mother::class, 'mother_id');
+        return $this->hasOne(Mother::class, 'id', 'mother_id');
     }
 
     public function father()
     {
-        return $this->belongsTo(Father::class, 'father_id');
+        return $this->hasOne(Father::class, 'id', 'father_id');
     }
 
-    public function house_has_characters()
+    public function house()
     {
-        return $this->belongsTo(House_has_characters::class, 'character');
+        return $this->hasManyThrough(House::class, House_has_characters::class, 'character', 'id');
     }
 
 }

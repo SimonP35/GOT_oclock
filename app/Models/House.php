@@ -8,10 +8,9 @@ class House extends Model
 {
     protected $table = 'house';
 
-    public function house_has_characters()
+    public function character()
     {
-        return $this->belongsTo(House_has_characters::class, 'house');
+        return $this->hasManyThrough(Character::class, House_has_characters::class, 'house', 'id', 'id', 'character');
     }
-
 }
 

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Character;
 use App\Models\House;
+use App\Models\Mother;
+use App\Models\Character;
+use Illuminate\Support\Facades\DB;
 use App\Models\House_has_characters;
 use Laravel\Lumen\Routing\Controller as BaseController;
 
@@ -13,20 +15,34 @@ class CharacterController extends BaseController
     {
         $character = Character::find($id);
 
-        // dump($character->load('title', 'mother', 'father'));
+        dump($character->load('title', 'mother', 'father', 'house'));
 
         return view('character.bio', ['character' => $character->load('title', 'mother', 'father')]);
     }
 
     public function list($id)
     {
-        $houses = House::find($id);
-        $characters = Character::All();
-        $houses_characters = House_has_characters::Find($id);
+        // //? Solution avec les "relations" des Models
 
-        dump($characters->load('house_has_characters'), $houses->load('house_has_characters'), $houses_characters->load('house', 'character'));
+        $house = House::find($id);
 
-        return view('character.house', [ 'characters' => $characters->load('house_has_characters'), 'houses' => $houses->load('house_has_characters'), 'houses_characters' => $houses_characters->load('house', 'character')]);
+        // dump($house->load(['character']));
+
+        return view('character.house', ['house' => $house->load(['character'])]);
+
+        //? Solution qui fonctionne sans utiliser les "relations" des Models
+
+        // $house = House::Find($id);
+
+        // $characters = DB::table('character')
+        // ->join('house_has_characters', 'house_has_characters.character', '=', 'character.id')
+        // ->join('house', 'house.id', '=', 'house_has_characters.house')
+        // ->select('character.*')
+        // ->where('house', '=', "{$id}")
+        // ->get();
+
+        // return view('character.house', ['characters' => $characters, 'house' => $house]);
+
     }
 
 

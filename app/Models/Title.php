@@ -10,7 +10,7 @@ class Title extends Model
 
     public function Character()
     {
-        return $this->hasMany(Character::class, 'id_title');
+        return $this->belongsToMany(Character::class, 'id_title');
     }
 
 }

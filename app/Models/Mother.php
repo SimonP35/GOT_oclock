@@ -10,7 +10,7 @@ class Mother extends Model
 
     public function Character()
     {
-        return $this->hasMany(Character::class, 'id');
+        return $this->belongsToMany(Character::class, 'id');
     }
 
 }
